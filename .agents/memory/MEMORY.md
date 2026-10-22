@@ -1,0 +1,1 @@
+- [Database URL isolation](database-url-isolation.md) — use an app-specific async DB variable; the workspace may inject `DATABASE_URL` for another service.
