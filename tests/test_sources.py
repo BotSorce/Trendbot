@@ -1,5 +1,6 @@
 """Unit tests for provider normalization."""
 
+from trend_finder.countries import COUNTRIES
 from trend_finder.sources.google_trends import parse_feed, parse_traffic
 from trend_finder.sources.reddit import RedditPopularSource
 from trend_finder.sources.reddit import parse_feed as parse_reddit_feed
@@ -54,3 +55,9 @@ def test_parse_reddit_rss_does_not_invent_a_score() -> None:
     assert items[0].metric == "محبوبیت جامعه"
     assert items[0].metric_value is None
     assert items[0].summary == "A community discussion"
+
+
+def test_country_codes_are_unique_iso_alpha_two_codes() -> None:
+    """Country selection only exposes unique two-letter region codes."""
+    assert len(COUNTRIES) == len(set(COUNTRIES))
+    assert all(len(code) == 2 and code.isalpha() and code.isupper() for code in COUNTRIES)

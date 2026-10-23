@@ -10,7 +10,7 @@ from aiogram.types import CallbackQuery, Message
 
 from trend_finder.countries import COUNTRIES
 from trend_finder.domain import TrendItem
-from trend_finder.keyboards import country_keyboard, source_keyboard
+from trend_finder.keyboards import country_keyboard, country_page_count, source_keyboard
 from trend_finder.services.trend_service import TrendService
 from trend_finder.sources import SOURCES
 from trend_finder.sources.types import TrendSourceError
@@ -82,6 +82,26 @@ async def choose_country_handler(callback: CallbackQuery, state: FSMContext) -> 
     await callback.answer()
     if callback.message:
         await callback.message.answer("کشور را انتخاب کنید:", reply_markup=country_keyboard())
+
+
+@router.callback_query(F.data.startswith("country_page:"))
+async def country_page_handler(callback: CallbackQuery) -> None:
+    """Move between pages in the country selector."""
+    try:
+        _, current_raw, target_raw = str(callback.data).split(":", maxsplit=2)
+        current_page = int(current_raw)
+        target_page = int(target_raw)
+    except ValueError:
+        await callback.answer("صفحه نامعتبر است.", show_alert=True)
+        return
+
+    if not 0 <= current_page < country_page_count() or not 0 <= target_page < country_page_count():
+        await callback.answer("این صفحه وجود ندارد.", show_alert=True)
+        return
+
+    await callback.answer(f"صفحه {target_page + 1} از {country_page_count()}")
+    if isinstance(callback.message, Message) and target_page != current_page:
+        await callback.message.edit_reply_markup(reply_markup=country_keyboard(target_page))
 
 
 @router.callback_query(F.data.startswith("country:"))

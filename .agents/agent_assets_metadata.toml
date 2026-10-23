@@ -1,0 +1,16 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "z20IBerujgy0JpQUFyAdI"
+uri = "file://generated-artifacts/trend-finder-bot-source.zip"
+type = "unspecified"
+title = "دانلود سورس ربات ترند‌یاب"
+description = "فایل ZIP شامل سورس پایتون، تست‌ها، README، فایل‌های Docker و نمونه تنظیمات است. فایل .env واقعی، توکن، دیتابیس و لاگ‌ها در آرشیو قرار ندارند."
+logical_id = "9484feea-9ab0-4a3f-b56a-1ce0fb953528"
+content_hash = "sha256:7a6f2c8883712c921f07c2db24580d7276aafbdcff6f4523bb3ac0803ef0cd48"
+size = 158041
+mtime_ms = 1792715404441
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:fafbdd2d-1a7c-4a60-b322-4dd86022aeeb/9484feea-9ab0-4a3f-b56a-1ce0fb953528/508d5191-b51e-4c75-a791-b4cc171998be"
+storage_version_token = "1792715412805070"
+content_type = "application/octet-stream"

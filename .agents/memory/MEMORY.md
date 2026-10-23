@@ -1,1 +1,2 @@
 - [Database URL isolation](database-url-isolation.md) — use an app-specific async DB variable; the workspace may inject `DATABASE_URL` for another service.
+- [Trend-source trust](trend-source-trust.md) — only expose sources whose regional data actually represents the trend metric the bot claims to show.
